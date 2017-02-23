@@ -14,9 +14,9 @@ public class Test implements PageProcessor{
 		
 		page.putField("name", page.getHtml().xpath("//dl[@class='geek_list']/dd/span/a/text()").toString());
 		if (page.getResultItems().get("name") == null) {
-            //skip this page
-            page.setSkip(true);
-        }
+		    //skip this page
+		    page.setSkip(true);
+		}
 		
 	}
 
