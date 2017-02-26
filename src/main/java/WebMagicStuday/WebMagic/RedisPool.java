@@ -12,7 +12,7 @@ import redis.clients.jedis.JedisPoolConfig;
 public class RedisPool {
 	
 	private static JedisPool jedisPool = null;
-	private static String host = "192.168.10.130";
+	private static String host = "192.168.11.130";
 	private static int port = 6379;
 	
 	static{
