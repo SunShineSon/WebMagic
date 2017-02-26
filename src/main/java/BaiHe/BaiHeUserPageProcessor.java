@@ -54,7 +54,7 @@ public class BaiHeUserPageProcessor implements PageProcessor {
     	Spider testSpider = Spider.create(new BaiHeUserPageProcessor());
     	
     	testSpider.addUrl("http://www.baihe.com/");
-    	testSpider.addPipeline(new ConsolePipeline()).addPipeline(new FilePipeline("D:\\webmagic\\"));
+    	testSpider.addPipeline(new ConsolePipeline());
         testSpider.thread(5);
         
         //注册监控
