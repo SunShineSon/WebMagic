@@ -16,7 +16,7 @@ public class GetImage {
      */  
     public static void writeImageToDisk(byte[] img, String fileName){  
         try {  
-            File file = new File("d:\\imgTest\\" + fileName);  
+            File file = new File("D:\\webmagic\\img\\" + fileName);  
             FileOutputStream fops = new FileOutputStream(file);  
             fops.write(img);  
             fops.flush();  

@@ -184,7 +184,7 @@ public class FaceTest {
 			default:
 				break;
 			}
-    		System.err.println("api_key和api_secret不匹配");
+    		System.err.println(errorStr);
     		return new HashMap<String,Object>();
     	}
         List<Map<String,Object>> faceList = JSON.parseObject(maps.get("faces").toString(),ArrayList.class);
