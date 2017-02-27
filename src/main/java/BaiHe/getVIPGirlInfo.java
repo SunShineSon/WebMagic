@@ -1,11 +1,15 @@
 package BaiHe;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.management.JMException;
+
+import com.alibaba.fastjson.JSON;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
@@ -30,9 +34,13 @@ public class getVIPGirlInfo implements PageProcessor {
     	Pattern r = Pattern.compile("(?<=\\()(.+?)(?=\\))");
     	Matcher m = r.matcher(page.getRawText());
     	if (m.find( )) {
-            List<String> list = new JsonPathSelector("$.result.members[*].headUrl").selectList(m.group(0));
-            for(int i = 0;i < list.size(); i++){
-        		String url = list.get(i); 
+            List<String> list = new JsonPathSelector("$.result.members[*]").selectList(m.group(0));
+            String girlInfo;
+            for(int i = 0;i<list.size();i++){
+            	girlInfo = list.get(i);
+            	VIPGirl girlObject = JSON.parseObject(girlInfo,VIPGirl.class);
+            	
+            	String url = girlObject.getHeadUrl();
         		double value = FaceTest.getInfo(url);
         		if(value>80){
         			String imgFileName = url.substring(url.lastIndexOf("/")+1);
@@ -50,8 +58,8 @@ public class getVIPGirlInfo implements PageProcessor {
                         System.out.println("没有从该连接获得内容");  
                     }  
         		}
-            	
-        	}
+            }
+            
          } 
     	
     	page.addTargetRequest("http://crm.baihe.com/baihe-services/vipInfo/getVipMemberList?jsoncallback=jQuery18308372247013949272_1488177231251&pageSize=50&page=2&gender=1");
